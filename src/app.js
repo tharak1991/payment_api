@@ -38,6 +38,6 @@ app.use('*', (req, res) => {
     res.sendStatus(404);
 });
 
-redis_subscriber.subscribeUserInfo();
+// redis_subscriber.subscribeUserInfo();
 
 module.exports = app;
