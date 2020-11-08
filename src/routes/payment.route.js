@@ -3,22 +3,28 @@ const routes = express.Router();
 const payment_controller = require('../controllers/payment.controller');
 
 
+
+
 routes.get("/:id", async (req, res, next) => {
     try {
         const id = req.params.id;
-        let user = await payment_controller.getById(id);
-        if (user) {
-            await res.status(200).json({
-                status: true,
-                user: user
-            });
-        } else {
-            await res.status(200).json({
-                status: false,
-                user: user,
-                msg: 'User not found'
-            });
-        }
+         await payment_controller.getById(id);
+         await res.status(200).json({
+                    status: true,
+                    
+                });
+        // if (user) {
+        //     await res.status(200).json({
+        //         status: true,
+        //         user: user
+        //     });
+        // } else {
+        //     await res.status(200).json({
+        //         status: false,
+        //         user: user,
+        //         msg: 'User not found'
+        //     });
+        // }
     } catch (e) {
         console.error(e);
         res.status(500).json({

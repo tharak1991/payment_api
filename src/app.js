@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
+const redis_subscriber = require('./redis/subscriber');
 const payment_route = require('./routes/payment.route');
 
 
@@ -36,5 +37,7 @@ app.use('/payment', payment_route);
 app.use('*', (req, res) => {
     res.sendStatus(404);
 });
+
+redis_subscriber.subscribeUserInfo();
 
 module.exports = app;

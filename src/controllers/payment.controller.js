@@ -1,56 +1,7 @@
-const {user_model} = require("../database/models");
-
-exports.getFinalData = (body, type) => {
-    return {
-        name: body.name,
-        email: body.email,
-        phone: body.phone,
-        password: body.password || null,
-        addedDate: new Date(),
-    };
-};
-
-exports.checkPassword = password => {
-    if (password.length > 8) {
-        return true;
-    } else {
-        throw "PASSWORD DONT MEET POLICY!";
-    }
-};
-
-exports.save = data => new user_model(data).save();
-
-exports.login = (email, password) => user_model.findOne({
-    $and: [
-        {email: email},
-        {password: password}
-    ]
-}).exec();
-
-exports.verifyUser = async (userId) => {
-    await user_model.findByIdAndUpdate(userId, {$set: {verified: true}})
-};
+const redis_publisher = require('../redis/publisher');
 
 exports.getById = async id => {
-    let user = await user_model.findById(id);
-    delete user.password;
-    return user;
+    return await redis_publisher.publishUserRequestEvent(id);
+   
 }
 
-
-exports.updateUser = async (userId, user) => {
-    const updateUser = await user_model.findByIdAndUpdate(userId,user);
-    return  updateUser ;
-};
-
-
-exports.getAllUsers = async () => {
-    let user = await user_model.find();
-    delete user.password;
-    return user;
-}
-
-
-exports.deleteUser = async id => {
-    return await user_model.findByIdAndRemove(id);
-}

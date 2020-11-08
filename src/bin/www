@@ -5,7 +5,6 @@
  */
 
 const app = require('../app');
-const {dbConnect} = require('../database');
 const debug = require('debug')('backend:server');
 const http = require('http');
 const config = require("../config/index");
@@ -28,7 +27,6 @@ const server = http.createServer(app);
  */
 
 server.listen(port, async () => {
-    await dbConnect();
 
     /* eslint-disable no-console */
     console.log(`Server is running on http://localhost:${port}`);
