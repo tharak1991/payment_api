@@ -1,5 +1,4 @@
 const {user_model} = require("../database/models");
-const {userType} = require("../utils/enum");
 
 exports.getFinalData = (body, type) => {
     return {

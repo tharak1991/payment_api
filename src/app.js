@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
-const user_route = require('./routes/user.route');
+const payment_route = require('./routes/payment.route');
 
 
 const app = express();
@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 /***
  * User Model Routes
  */
-app.use('/user', user_route); 
+app.use('/payment', payment_route); 
 
 
 app.use('*', (req, res) => {
