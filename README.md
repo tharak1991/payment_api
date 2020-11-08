@@ -19,11 +19,11 @@ Redis
 `sudo docker ps`
 `sudo docker exec -it test-redis sh`
 
-To install dependency (  point to directories of all projects):
+To install dependency 
 
 `npm install`
 
-To run app: ( point to directories of all projects):
+To run app: 
 
 `npm start`
 
